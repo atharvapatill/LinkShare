@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Link Not Found</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-[#070A12] overflow-hidden">
+
+  <!-- Background Blobs -->
+  <div class="absolute w-[500px] h-[500px] bg-purple-500/30 blur-[140px] rounded-full top-[-150px] left-[-150px]"></div>
+  <div class="absolute w-[450px] h-[450px] bg-cyan-400/25 blur-[140px] rounded-full bottom-[-150px] right-[-150px]"></div>
+  <div class="absolute w-[350px] h-[350px] bg-pink-500/20 blur-[140px] rounded-full top-[30%] left-[40%]"></div>
+
+  <!-- 🧊 Card -->
+  <div class="relative w-[92%] max-w-md rounded-3xl
+              bg-white/5 backdrop-blur-2xl
+              border border-white/10 shadow-2xl text-center">
+
+    <!-- Title -->
+    <h1 class="pt-10 text-white text-2xl font-semibold mt-4">
+      Link Not Available
+    </h1>
+
+    <!-- Dynamic Message (EJS-ready) -->
+    <p class="text-white/60 text-sm mt-2 px-6">
+        The file you are trying to access is either expired, or invalid.
+    </p>
+
+    <!-- Status badges -->
+    <div class="mt-6 flex justify-center gap-2 flex-wrap">
+
+      <span class="px-3 py-1 text-xs rounded-full
+                   bg-white/5 border border-white/10 text-white/40">
+        ⏳ Expired
+      </span>
+
+      <span class="px-3 py-1 text-xs rounded-full
+                   bg-white/5 border border-white/10 text-white/40">
+        🔒 Secure System
+      </span>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-8 pb-10 px-6 space-y-3">
+
+      <a href="/"
+         class="block w-full py-3 rounded-xl
+                bg-white/10 border border-white/15
+                text-white text-sm font-medium
+                hover:bg-white/15 transition">
+        Go to Home
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>

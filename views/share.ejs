@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Share File</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-[#070A12] overflow-hidden">
+
+  <!-- Background Blobs -->
+  <div class="absolute w-[500px] h-[500px] bg-purple-500/30 blur-[120px] rounded-full top-[-150px] left-[-150px]"></div>
+  <div class="absolute w-[450px] h-[450px] bg-cyan-400/25 blur-[120px] rounded-full bottom-[-150px] right-[-150px]"></div>
+  <div class="absolute w-[350px] h-[350px] bg-pink-500/20 blur-[120px] rounded-full top-[30%] left-[40%]"></div>
+
+  <!-- 🧊 Main Card -->
+  <div class="relative w-[92%] max-w-xl rounded-3xl
+              bg-white/5 backdrop-blur-2xl
+              border border-white/10 shadow-2xl">
+
+    <!-- Header -->
+    <div class="px-8 py-6 text-center border-b border-white/10">
+      <h1 class="text-xl font-semibold text-white">
+        Share Your File
+      </h1>
+      <p class="text-sm text-white/60 mt-1">
+        Send access via email or copy link
+      </p>
+    </div>
+
+    <!-- Content -->
+    <div class="p-8 space-y-6">
+
+      <!-- 📧 Email Input -->
+      <form action="/api/share/" method="POST" class="space-y-3">
+
+        <div>
+          <label class="text-xs text-white/50">Recipient Email</label>
+          <input type="email" name="email" required
+                 placeholder="example@gmail.com"
+                 class="w-full mt-1 px-4 py-3 rounded-xl
+                        bg-white/5 border border-white/10
+                        text-white text-sm outline-none
+                        focus:border-cyan-400/50 transition"/>
+        </div>
+
+        <!-- Hidden file/link id -->
+        <input type="hidden" name="fileid" value="<%=file.uuid%>"/>
+
+        <button type="submit"
+                class="w-full py-3 rounded-xl
+                       bg-white/10 border border-white/15
+                       text-white text-sm font-medium
+                       hover:bg-white/15 transition">
+          Send
+        </button>
+      </form>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3">
+        <div class="h-px w-full bg-white/10"></div>
+        <span class="text-xs text-white/40">OR</span>
+        <div class="h-px w-full bg-white/10"></div>
+      </div>
+
+      <!-- 🔗 Share Link -->
+      <div>
+
+        <p class="text-xs text-white/40 mb-2">
+          Shareable Link
+        </p>
+
+        <div class="flex gap-2">
+
+          <input id="shareLink"
+                 value="<%=`${req.protocol}://${req.get('host')}/download/${file.uuid}`%>"
+                 readonly
+                 class="w-full px-4 py-3 rounded-xl
+                        bg-white/5 border border-white/10
+                        text-white text-xs outline-none"/>
+
+          <button type="button"
+                  onclick="copyLink()"
+                  class="px-4 py-3 rounded-xl
+                         bg-white/10 border border-white/15
+                         text-white text-xs
+                         hover:bg-white/15 transition">
+            Copy
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function copyLink() {
+      const input = document.getElementById("shareLink");
+      input.select();
+      input.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(input.value);
+
+      alert("Link copied!");
+    }
+  </script>
+
+</body>
+</html>
